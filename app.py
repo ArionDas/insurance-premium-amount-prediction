@@ -8,7 +8,7 @@ import joblib
 import numpy as np
 
 app = Flask(__name__, template_folder='templates')
-app.config['SECRET_KEY'] = b'_5#y2L"F4Q8z\n\xec]/'
+app.config['SECRET_KEY'] = b'_5#y2L"F4Q8z\n\xec]/' ## this doesn't need to be hidden as of now - some random gibbersih I wrote
 model = joblib.load('model.pkl')
 
 
