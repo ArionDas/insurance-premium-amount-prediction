@@ -1,14 +1,3 @@
----
-title: Insurance Premium Amount Prediction
-emoji: ⚡
-colorFrom: pink
-colorTo: pink
-sdk: gradio
-sdk_version: 5.10.0
-app_file: app.py
-pinned: false
-license: apache-2.0
-short_description: ML model to predict Insurance Premium Amount.
----
+# Insurance Premium Amount Prediction
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+The purpose of this model is to predict insurance premiums based on various customer characteristics and policy details. Since the model has been trained on synthetically generated data which simulates real-world scenarios (from a Kaggle competition), the predicted value is not for real world usage, but should rather be leveraged to get an educated assumption.
