@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJr+K+GkABh9h3l+mybJfA0bG5gHiE5Q1LO1rHwUtZoZr8JjxfQEC8t09/8U" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+
+	<title>Premium Amount</title>
+	<style>
+		body {
+			background: linear-gradient(to right, rgba(34, 193, 195, 0.8), rgba(253, 187, 45, 0.8));
+			background-size: cover;
+			font-family: 'Arial', sans-serif;
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.container {
+			width: 100%;
+			max-width: 800px;
+			background-color: rgba(255, 255, 255, 0.9);
+			border-radius: 15px;
+			box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+			padding: 30px;
+			overflow-y: auto;
+			max-height: 90vh;
+		}
+
+		.card {
+			border-radius: 8px;
+			border: none;
+		}
+
+		.card-body {
+			padding: 20px;
+		}
+
+		.card-header {
+			font-size: 26px;
+			font-weight: 600;
+			text-align: center;
+			color: #fff;
+			background-color: #007bff;
+			border-radius: 8px;
+			padding: 10px 0;
+		}
+
+		h3 {
+			font-size: 24px;
+			font-weight: bold;
+			color: #333;
+			text-align: center;
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+
+		ul li {
+			font-size: 16px;
+			color: #555;
+			padding: 8px 0;
+		}
+
+		ul li:nth-child(even) {
+			background-color: #f9f9f9;
+		}
+
+		ul li span {
+			font-weight: 500;
+			color: #007bff;
+		}
+
+		.prediction {
+			font-size: 24px;
+			font-weight: bold;
+			color: #28a745;
+			padding-top: 20px;
+			text-align: center;
+		}
+
+		.card-footer {
+			text-align: center;
+			padding-top: 20px;
+		}
+
+		/* Add abstract background pattern */
+		.abstract-background {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-image: url('https://www.transparenttextures.com/patterns/asfalt.png');
+			background-repeat: repeat;
+			z-index: -1;
+		}
+
+	</style>
+</head>
+
+<body>
+	<!-- Add the abstract background -->
+	<div class="abstract-background"></div>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				<h3>Thank You! Here is the information you provided:</h3>
+			</div>
+			<div class="card-body">
+				<ul>
+					<li><span>Age:</span> {{session['age']}}</li>
+					<li><span>Gender:</span> {{session['gender']}}</li>
+					<li><span>Annual income:</span> {{session['annual_income']}}</li>
+					<li><span>Marital status:</span> {{session['marital_status']}}</li>
+					<li><span>Dependents:</span> {{session['dependents']}}</li>
+					<li><span>Education level:</span> {{session['education_level']}}</li>
+					<li><span>Occupation:</span> {{session['occupation_status']}}</li>
+					<li><span>Health score:</span> {{session['health_score']}}</li>
+					<li><span>Location:</span> {{session['location']}}</li>
+					<li><span>Policy type:</span> {{session['policy']}}</li>
+					<li><span>Previous claims:</span> {{session['previous_claims']}}</li>
+					<li><span>Vehicle age:</span> {{session['vehicle_age']}}</li>
+					<li><span>Credit score:</span> {{session['credit_score']}}</li>
+					<li><span>Insurance duration:</span> {{session['insurance_duration']}}</li>
+					<li><span>Customer feedback:</span> {{session['feedback_status']}}</li>
+					<li><span>Smoking status:</span> {{session['smoking_status']}}</li>
+					<li><span>Exercise frequency:</span> {{session['exercise_frequency']}}</li>
+					<li><span>Property type:</span> {{session['property_type']}}</li>
+					<li><span>Year:</span> {{session['year']}}</li>
+					<li><span>Day:</span> {{session['day']}}</li>
+					<li><span>Month:</span> {{session['month']}}</li>
+					<li><span>Month name:</span> {{session['month_name']}}</li>
+					<li><span>Day of week:</span> {{session['day_of_week']}}</li>
+					<li><span>Contract length:</span> {{session['contract_length']}}</li>
+					<li><span>Income per dependent:</span> {{session['income_per_dependent']}}</li>
+					<li><span>Credit score insurance duration:</span> {{session['credit_score_insurance_duration']}}</li>
+					<li><span>Health risk score:</span> {{session['health_risk_score']}}</li>
+					<li><span>Credit health score:</span> {{session['credit_health_score']}}</li>
+					<li><span>Health age interaction:</span> {{session['health_age_interaction']}}</li>
+				</ul>
+			</div>
+			<div class="card-footer">
+				<h3 class="prediction">Insurance premium amount predicted is: {{ '%.2f' | format(prediction) }} dollars</h3>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybVYfFf8bW9y5pI5aBf7c10CkEM6SOePbSfi1tHIKa35gAbJq" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8Fqk5K9qAqg6O+h1XYThRKnUNnT1Lf0zLtx/W7zQ9r5pB7" crossorigin="anonymous"></script>
+</body>
+
+</html>

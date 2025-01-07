@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJr+K+GkABh9h3l+mybJfA0bG5gHiE5Q1LO1rHwUtZoZr8JjxfQEC8t09/8U" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <title>Insurance Premium Amount Prediction</title>
+    <style>
+        body {
+            background: linear-gradient(to right, rgba(34, 193, 195, 0.8), rgba(253, 187, 45, 0.8));
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9); /* White background with transparency */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 800px;
+            overflow-y: auto;
+            max-height: 90vh; /* Prevents overflow */
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            height: 45px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+        }
+
+        .form-check-label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .custom-input-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .custom-input-group select {
+            flex-grow: 1;
+        }
+
+        .form-check {
+            margin-top: 10px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+        }
+
+        /* Add a subtle abstract pattern as the background */
+        .abstract-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/asfalt.png'); /* Abstract pattern */
+            background-repeat: repeat;
+            z-index: -1; /* Make sure it's behind the content */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Add the abstract background -->
+    <div class="abstract-background"></div>
+
+    <div class="form-container">
+        <h1>Insurance Premium Amount Predictor</h1>
+        <h3 class="mb-4">The purpose of this model is to predict insurance premiums based on various customer characteristics and policy details. Since the model has been trained on synthetically generated data which simulates real-world scenarios (from a Kaggle competition), the predicted value is not for real world usage, but should rather be leveraged to get an educated assumption. Since insurance premium amount is prone to a lot of risk, we need to collect all your information. Please bear with me and carefully enter your details below:</h3>
+        
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <!-- Styling the Form Elements Without Modifying the Form Itself -->
+            <div class="form-group">
+                {{ form.age.label }} {{ form.age }}
+            </div>
+            <div class="form-group">
+                {{ form.gender.label }} {{ form.gender }}
+            </div>
+            <div class="form-group">
+                {{ form.annual_income.label }} {{ form.annual_income }}
+            </div>
+            <div class="form-group">
+                {{ form.marital_status.label }} {{ form.marital_status }}
+            </div>
+            <div class="form-group">
+                {{ form.dependents.label }} {{ form.dependents }}
+            </div>
+            <div class="form-group">
+                {{ form.education_level.label }} {{ form.education_level }}
+            </div>
+            <div class="form-group">
+                {{ form.occupation.label }} {{ form.occupation }}
+            </div>
+            <div class="form-group">
+                {{ form.health_score.label }} {{ form.health_score }}
+            </div>
+            <div class="form-group">
+                {{ form.location.label }} {{ form.location }}
+            </div>
+            <div class="form-group">
+                {{ form.policy_type.label }} {{ form.policy_type }}
+            </div>
+            <div class="form-group">
+                {{ form.previous_claims.label }} {{ form.previous_claims }}
+            </div>
+            <div class="form-group">
+                {{ form.vehicle_age.label }} {{ form.vehicle_age }}
+            </div>
+            <div class="form-group">
+                {{ form.credit_score.label }} {{ form.credit_score }}
+            </div>
+            <div class="form-group">
+                {{ form.insurance_duration.label }} {{ form.insurance_duration }}
+            </div>
+            <div class="form-group">
+                {{ form.customer_feedback.label }} {{ form.customer_feedback }}
+            </div>
+            <div class="form-group">
+                {{ form.smoking_status.label }} {{ form.smoking_status }}
+            </div>
+            <div class="form-group">
+                {{ form.exercise_frequency.label }} {{ form.exercise_frequency }}
+            </div>
+            <div class="form-group">
+                {{ form.property_type.label }} {{ form.property_type }}
+            </div>
+            <div class="form-group custom-input-group">
+                {{ form.year.label }} {{ form.year }}
+                {{ form.day.label }} {{ form.day }}
+                {{ form.month.label }} {{ form.month }}
+            </div>
+            <div class="form-group">
+                {{ form.month_name.label }} {{ form.month_name }}
+            </div>
+            <div class="form-group">
+                {{ form.day_of_week.label }} {{ form.day_of_week }}
+            </div>
+            <div class="form-group">
+                {{ form.contract_length.label }} {{ form.contract_length }}
+            </div>
+            <div class="form-group">
+                {{ form.income_per_dependent.label }} {{ form.income_per_dependent }}
+            </div>
+            <div class="form-group">
+                {{ form.credit_score_insurance_duration.label }} {{ form.credit_score_insurance_duration }}
+            </div>
+            <div class="form-group">
+                {{ form.health_risk_score.label }} {{ form.health_risk_score }}
+            </div>
+            <div class="form-group">
+                {{ form.credit_health_score.label }} {{ form.credit_health_score }}
+            </div>
+            <div class="form-group">
+                {{ form.health_age_interaction.label }} {{ form.health_age_interaction }}
+            </div>
+
+            <div class="form-group text-center">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybVYfFf8bW9y5pI5aBf7c10CkEM6SOePbSfi1tHIKa35gAbJq" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8Fqk5K9qAqg6O+h1XYThRKnUNnT1Lf0zLtx/W7zQ9r5pB7" crossorigin="anonymous"></script>
+</body>
+
+</html>
